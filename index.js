@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const session = require('express-session');
 const massive = require('massive');
 require('dotenv').config();
 
@@ -10,6 +10,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 90000 }
+  }))
+
 
 massive(process.env.CONNECTION_STRING)
     .then((dbInstance) => {
@@ -17,6 +24,10 @@ massive(process.env.CONNECTION_STRING)
         console.log('The DB is working')
     })
 
+const controller = require('./server/controller');
+
+app.post('/api/login', controller.login);
+app.post('/api/register', controller.register);
 
 
 

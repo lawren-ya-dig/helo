@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 
 class Dashboard extends Component {
     render() { 
        
+        
         return ( 
             <div>
-                <h1>{this.props.name}</h1>
+                <h1>Dashboard</h1>
                 <p>This is the dashboard view</p>
             </div>
          );
     }
 }
  
-export default Dashboard;
+export default connect (state => state)(Dashboard);

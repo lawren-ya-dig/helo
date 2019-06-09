@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 class Post extends Component {
     render() { 
@@ -10,4 +11,4 @@ class Post extends Component {
     }
 }
  
-export default Post;
+export default connect(state => state)(Post);

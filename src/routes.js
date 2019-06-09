@@ -3,26 +3,15 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
 import Post from './Components/Post/Post';
 import { Switch, Route } from 'react-router-dom';
-import React, { Component } from 'react'
+import React from 'react'
 
 
-class routes extends Component {
-   
-    render() { 
-        return ( 
-            <div>
-                <Switch>
-                    <Route exact path="/" Component={Auth} />
-                    <Route path="/dashboard" Component={Dashboard}/>
-                    <Route path="/new" Component={Form} />
-                    <Route path="/post/:postid" Component={Post} />
-                </Switch>
-            </div>
-         );
-    }
-}
- 
-export default routes;
-
-
+export default (
+  <Switch>
+    <Route component={Dashboard} path="/dashboard" />
+    <Route component={Post} path="/post/:postid" />
+    <Route component={Form} path="/new"/>
+    <Route component={Auth} exact path="/" />
+  </Switch>
+);
     
